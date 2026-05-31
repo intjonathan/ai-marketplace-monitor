@@ -57,6 +57,7 @@ aimm = "ai_marketplace_monitor.cli:app"
 
 [project.optional-dependencies]
 pynput = ["pynput>=1.7.0"]
+airtable = ["pyairtable>=3.0.0"]
 dev = [
   "pre-commit>=4.0.1",
   "invoke>=2.2.0",
@@ -72,6 +73,7 @@ test = [
   "coverage[toml]>=7.6.7",
   "pytest-cov>=6.0.0",
   "pytest-playwright>=0.7.0",
+  "pyairtable>=3.0.0",
 ]
 linters = ["isort>=5.13.2,<7.0.0", "black>=24.10,<27.0", "ruff>=0.9.2,<0.16.0"]
 security = ["safety>=3.2.11"]

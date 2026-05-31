@@ -1,5 +1,5 @@
 version = 1
-revision = 3
+revision = 2
 requires-python = ">=3.10"
 resolution-markers = [
     "python_full_version >= '3.13'",
@@ -21,7 +21,7 @@ wheels = [
 
 [[package]]
 name = "ai-marketplace-monitor"
-version = "0.10.0"
+version = "0.10.2"
 source = { editable = "." }
 dependencies = [
     { name = "anthropic" },
@@ -53,6 +53,9 @@ dependencies = [
 ]
 
 [package.optional-dependencies]
+airtable = [
+    { name = "pyairtable" },
+]
 dev = [
     { name = "build" },
     { name = "bump2version" },
@@ -84,6 +87,7 @@ security = [
 ]
 test = [
     { name = "coverage", extra = ["toml"] },
+    { name = "pyairtable" },
     { name = "pytest" },
     { name = "pytest-cov" },
     { name = "pytest-playwright" },
@@ -130,6 +134,8 @@ requires-dist = [
     { name = "playwright", specifier = ">=1.41.0" },
     { name = "pre-commit", marker = "extra == 'dev'", specifier = ">=4.0.1" },
     { name = "pushbullet-py", specifier = ">=0.12.0" },
+    { name = "pyairtable", marker = "extra == 'airtable'", specifier = ">=3.0.0" },
+    { name = "pyairtable", marker = "extra == 'test'", specifier = ">=3.0.0" },
     { name = "pynput", marker = "extra == 'pynput'", specifier = ">=1.7.0" },
     { name = "pyparsing", specifier = ">=3.1.0" },
     { name = "pytest", marker = "extra == 'test'", specifier = ">=8.3.3" },
@@ -148,13 +154,13 @@ requires-dist = [
     { name = "sphinxext-opengraph", marker = "extra == 'docs'", specifier = ">=0.9.0" },
     { name = "tomli", marker = "python_full_version < '3.11'", specifier = "==2.2.1" },
     { name = "twine", marker = "extra == 'dev'", specifier = ">=5.0.0" },
-    { name = "typer", specifier = ">=0.15.1,<0.25.0" },
+    { name = "typer", specifier = ">=0.15.1,<0.26.0" },
     { name = "uvicorn", extras = ["standard"], specifier = ">=0.27" },
     { name = "watchdog", specifier = ">=4.0.0" },
     { name = "watchdog", extras = ["watchmedo"], marker = "extra == 'dev'", specifier = ">=6.0.0" },
     { name = "xdoctest", marker = "extra == 'test'", specifier = ">=1.2.0" },
 ]
-provides-extras = ["pynput", "dev", "test", "linters", "security", "typing", "docs"]
+provides-extras = ["pynput", "airtable", "dev", "test", "linters", "security", "typing", "docs"]
 
 [package.metadata.requires-dev]
 dev = [{ name = "pytest-asyncio", specifier = ">=1.1.0" }]
@@ -1113,6 +1119,15 @@ wheels = [
 ]
 
 [[package]]
+name = "inflection"
+version = "0.5.1"
+source = { registry = "https://pypi.org/simple" }
+sdist = { url = "https://files.pythonhosted.org/packages/e1/7e/691d061b7329bc8d54edbf0ec22fbfb2afe61facb681f9aaa9bff7a27d04/inflection-0.5.1.tar.gz", hash = "sha256:1a29730d366e996aaacffb2f1f1cb9593dc38e2ddd30c91250c6dde09ea9b417", size = 15091, upload-time = "2020-08-22T08:16:29.139Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/59/91/aa6bde563e0085a02a435aa99b49ef75b0a4b062635e606dab23ce18d720/inflection-0.5.1-py2.py3-none-any.whl", hash = "sha256:f38b2b640938a4f35ade69ac3d053042959b62a0f1076a5bbaa1b9526605a8a2", size = 9454, upload-time = "2020-08-22T08:16:27.816Z" },
+]
+
+[[package]]
 name = "iniconfig"
 version = "2.1.0"
 source = { registry = "https://pypi.org/simple" }
@@ -1921,6 +1936,22 @@ dependencies = [
 sdist = { url = "https://files.pythonhosted.org/packages/73/21/d250cfca8ff30c2e5a7447bc13861541126ce9bd4426cd5d0c9f08b5547d/py_serializable-2.1.0.tar.gz", hash = "sha256:9d5db56154a867a9b897c0163b33a793c804c80cee984116d02d49e4578fc103", size = 52368, upload-time = "2025-07-21T09:56:48.07Z" }
 wheels = [
     { url = "https://files.pythonhosted.org/packages/9b/bf/7595e817906a29453ba4d99394e781b6fabe55d21f3c15d240f85dd06bb1/py_serializable-2.1.0-py3-none-any.whl", hash = "sha256:b56d5d686b5a03ba4f4db5e769dc32336e142fc3bd4d68a8c25579ebb0a67304", size = 23045, upload-time = "2025-07-21T09:56:46.848Z" },
+]
+
+[[package]]
+name = "pyairtable"
+version = "3.3.0"
+source = { registry = "https://pypi.org/simple" }
+dependencies = [
+    { name = "inflection" },
+    { name = "pydantic" },
+    { name = "requests" },
+    { name = "typing-extensions" },
+    { name = "urllib3" },
+]
+sdist = { url = "https://files.pythonhosted.org/packages/2c/1d/8a572580e02297cef7ae01053a8b550b7759ea80326cd3231df87b00555b/pyairtable-3.3.0.tar.gz", hash = "sha256:d6d3b77f6feb7a02a84779c2235d37a46605f36030cf20ed99b08bab73108a8c", size = 150168, upload-time = "2025-11-05T20:11:41.435Z" }
+wheels = [
+    { url = "https://files.pythonhosted.org/packages/13/7b/bebb0ebb86353b63740869ed10ac1fef1636ccc6042beb1d8d3956cad02d/pyairtable-3.3.0-py2.py3-none-any.whl", hash = "sha256:38af09c18659918b96539ac4d9730c9656f6ce2088cdff692dd311fa16802acf", size = 101513, upload-time = "2025-11-05T20:11:40.137Z" },
 ]
 
 [[package]]

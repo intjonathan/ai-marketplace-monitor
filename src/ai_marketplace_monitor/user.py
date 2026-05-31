@@ -7,6 +7,7 @@ from typing import Any, List, Tuple, Type
 from diskcache import Cache  # type: ignore
 
 from .ai import AIResponse  # type: ignore
+from .airtable import AirtableNotificationConfig
 from .email_notify import EmailNotificationConfig
 from .listing import Listing
 from .marketplace import TItemConfig
@@ -20,6 +21,7 @@ from .utils import CacheType, CounterItem, cache, convert_to_seconds, counter, h
 
 @dataclass
 class UserConfig(
+    AirtableNotificationConfig,
     EmailNotificationConfig,
     PushbulletNotificationConfig,
     PushoverNotificationConfig,
