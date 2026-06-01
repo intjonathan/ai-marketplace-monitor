@@ -11,9 +11,9 @@ from typing import TYPE_CHECKING, Any, Iterator, List, Tuple
 from unittest.mock import MagicMock, patch
 
 import pytest
-from pyairtable import Api
-from pyairtable.api.base import Base
-from pyairtable.testing import MockAirtable
+from pyairtable import Api  # type: ignore
+from pyairtable.api.base import Base  # type: ignore
+from pyairtable.testing import MockAirtable  # type: ignore
 
 from ai_marketplace_monitor.ai import AIResponse
 from ai_marketplace_monitor.airtable import (
@@ -361,7 +361,7 @@ class TestImportFallback:
 
         real_import = builtins.__import__
 
-        def fake_import(name: str, *args: object, **kwargs: object):  # type: ignore[no-untyped-def]
+        def fake_import(name: str, *args: Any, **kwargs: Any) -> Any:
             if name == "pyairtable":
                 raise ImportError("pyairtable not installed")
             return real_import(name, *args, **kwargs)
